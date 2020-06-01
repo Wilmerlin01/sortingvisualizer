@@ -21,11 +21,11 @@ def resize(rect_arr, size, canvas):
     random.shuffle(value_arr)
     
     for x in range(0,size):
-        x0 = 50+(400/size)*x
+        x0 = 50+((model.width-100)/size)*x
         y0 = 10
-        x1 = 50+(400/size)*(x+1)
-        y1 = 10+(300/size)*value_arr[x]
-        rect_arr.append(canvas.create_rectangle(x0,y0,x1,y1))
+        x1 = 50+((model.width-100)/size)*(x+1)
+        y1 = 10+((model.height-200)/size)*value_arr[x]
+        rect_arr.append(canvas.create_rectangle(x0,y0,x1,y1, fill = "white"))
     return (rect_arr, value_arr)
     
 if __name__ == '__main__':
@@ -48,4 +48,5 @@ if __name__ == '__main__':
  
     
     model.root.mainloop()
+
 
