@@ -108,7 +108,27 @@ def insertionsort():
         if(i == len(model.value_arry)-1):
             model.canvas.itemconfig(model.rect_arry[i],fill = "#a68fbf" )
             
-
+            
+def bubblesort():
+    
+    for i in range(0,len(model.value_arry)):
+        
+        for j in range(0,len(model.value_arry)-i-1):
+            model.canvas.itemconfig(model.rect_arry[j], fill = "red")
+            if(model.value_arry[j] > model.value_arry[j+1]):
+                model.value_arry[j], model.value_arry[j+1] = model.value_arry[j+1], model.value_arry[j]
+                
+                current_coords = model.canvas.coords(model.rect_arry[j])
+                other_coords = model.canvas.coords(model.rect_arry[j+1])
+                model.canvas.move(model.rect_arry[j], other_coords[0]-current_coords[0], 0)
+                model.canvas.move(model.rect_arry[j+1], -(other_coords[0]-current_coords[0]), 0)
+                model.rect_arry[j], model.rect_arry[j+1] = model.rect_arry[j+1],model.rect_arry[j]
+                model.root.update()
+            else:
+                model.canvas.itemconfig(model.rect_arry[j], fill = "white")
+        model.canvas.itemconfig(model.rect_arry[len(model.value_arry)-i-1], fill = "#a68fbf" )    
+            
+    
     
         
 def mergesort(val_arry, rect_arry,canvas_ind):

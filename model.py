@@ -16,7 +16,7 @@ height = 800
     
 #creates base
 canvas = Canvas(root,width = width,height = height)
-canvas.grid(row=1,column=0,columnspan = 4)
+canvas.grid(row=1,column=0,columnspan = 6)
  
 #sorting buttons 
 selection_sort = Button(root, text = "Selection sort", command =lambda: sorting.selectionsort())
@@ -29,11 +29,14 @@ merge_sort = Button(root, text = "Merge sort", command =lambda: sorting.mergesor
 merge_sort.grid(row=0,column=2) 
 
 insertion_sort = Button(root, text = "Insertion sort", command =lambda: sorting.insertionsort())
-insertion_sort.grid(row=0,column=3)  
+insertion_sort.grid(row=0,column=3) 
+
+bubble_sort = Button(root, text = "Bubble sort", command =lambda: sorting.bubblesort())
+bubble_sort.grid(row=0,column=4)   
 
 #creates scale setting
 array_size = Scale(root, from_=10, to=200,orient = HORIZONTAL,length = 400)
-array_size.grid(row=0,column=4)
+array_size.grid(row=0,column=5)
 
 #contains rectangle objects
 rect_arry = []
