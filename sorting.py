@@ -84,4 +84,108 @@ def quickSort_high_pivot(low,high):
                 model.canvas.itemconfig(model.rect_arry[i], fill = "#a68fbf")
                 model.root.update()
                 time.sleep(0.05)
+
+
     
+
+#def insertionsort():
+        
+def mergesort(val_arry, rect_arry,canvas_ind):
+    #print(canvas_ind, "outside")
+    
+    if(len(val_arry) > 1):
+        mid = len(val_arry)//2
+        val_left = val_arry[:mid]
+        val_right = val_arry[mid:]
+        rect_left = rect_arry[:mid]
+        rect_right = rect_arry[mid:]
+        
+        mergesort(val_left,rect_left,canvas_ind)
+        mergesort(val_right,rect_right,mid)
+        
+        i = 0
+        j = 0
+        k = 0
+        l = canvas_ind
+        
+        while(i < len(val_left) and j < len(val_right)):
+            if(val_left[i] < val_right[j]):
+                val_arry[k] = val_left[i]
+                  
+                current_coords = model.canvas.coords(rect_left[i])
+                other_coords = model.canvas.coords(rect_arry[k])
+                model.canvas.itemconfig(rect_arry[k],state = "hidden")
+                model.canvas.itemconfig(rect_left[i],state = "hidden") 
+                model.rect_arry[l] = model.canvas.create_rectangle(other_coords[0],current_coords[1],other_coords[2],current_coords[3],fill="white")
+                rect_arry[k] = model.rect_arry[l]  
+                i+=1
+                model.root.update()
+            else:
+                val_arry[k] = val_right[j]
+                
+                current_coords = model.canvas.coords(rect_right[j])
+                other_coords = model.canvas.coords(rect_arry[k])
+                model.canvas.itemconfig(rect_arry[k],state = "hidden")
+                model.canvas.itemconfig(rect_right[j],state = "hidden")
+                model.rect_arry[l] = model.canvas.create_rectangle(other_coords[0],current_coords[1],other_coords[2],current_coords[3],fill="white")
+                rect_arry[k] = model.rect_arry[l] 
+                j+=1
+                model.root.update()
+            k+=1
+            l+=1
+        
+        while(i < len(val_left)):
+            val_arry[k] = val_left[i]
+
+            current_coords = model.canvas.coords(rect_left[i])
+            other_coords = model.canvas.coords(rect_arry[k])
+            model.canvas.itemconfig(rect_arry[k],state = "hidden")
+            model.canvas.itemconfig(rect_left[i],state = "hidden")
+            model.rect_arry[l]=model.canvas.create_rectangle(other_coords[0],current_coords[1],other_coords[2],current_coords[3],fill="white")
+            rect_arry[k] = model.rect_arry[l]  
+            i+=1   
+            k+=1
+            l+=1
+            model.root.update()
+            
+        while(j < len(val_right)):
+            val_arry[k] = val_right[j]
+            
+            current_coords = model.canvas.coords(rect_right[j])
+            other_coords = model.canvas.coords(rect_arry[k])
+            model.canvas.itemconfig(rect_arry[k],state = "hidden")
+            model.canvas.itemconfig(rect_right[j],state = "hidden")
+            model.rect_arry[l]=model.canvas.create_rectangle(other_coords[0],current_coords[1],other_coords[2],current_coords[3],fill="white")
+            rect_arry[k] = model.rect_arry[l]
+            j+=1 
+            k+=1   
+            l+=1 
+            model.root.update()
+           
+            
+            
+        model.root.update()
+        
+        if(mid == len(model.value_arry)//2):
+            for x in range(0,model.array_size.get()):
+                model.canvas.itemconfig(model.rect_arry[x], fill = "#a68fbf")
+                current_coords = model.canvas.coords(model.rect_arry[x])
+                model.canvas.move(model.rect_arry[x], (50+((model.width-100)/model.array_size.get())*x)-current_coords[0],0)
+                model.root.update()
+                
+#             for x in model.rect_arry:
+#                 print(tuple(model.canvas.coords(x)))
+#                 model.canvas.itemconfig(x,state="normal",fill = "#a68fbf")
+#                 model.canvas.move()
+#                 model.root.update()
+            
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
