@@ -88,7 +88,28 @@ def quickSort_high_pivot(low,high):
 
     
 
-#def insertionsort():
+def insertionsort():
+    
+    for i in range(0,len(model.value_arry)):
+        for j in range(0,i):
+            if(model.value_arry[i] < model.value_arry[j]):
+                model.value_arry[i], model.value_arry[j] = model.value_arry[j], model.value_arry[i]
+                
+                current_coords = model.canvas.coords(model.rect_arry[i])
+                other_coords = model.canvas.coords(model.rect_arry[j])
+                model.canvas.move(model.rect_arry[i], other_coords[0]-current_coords[0], 0)
+                model.canvas.move(model.rect_arry[j], -(other_coords[0]-current_coords[0]), 0)
+                model.canvas.itemconfig(model.rect_arry[i], fill = "#a68fbf")
+                model.canvas.itemconfig(model.rect_arry[j], fill = "red")
+                model.rect_arry[i], model.rect_arry[j] = model.rect_arry[j],model.rect_arry[i]
+
+                model.root.update()
+                
+        if(i == len(model.value_arry)-1):
+            model.canvas.itemconfig(model.rect_arry[i],fill = "#a68fbf" )
+            
+
+    
         
 def mergesort(val_arry, rect_arry,canvas_ind):
     #print(canvas_ind, "outside")
